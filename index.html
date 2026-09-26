@@ -547,7 +547,64 @@ function renderReview(title, details){
   return html;
 }
 
-const SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxYG6xMxmCMOkCIHdQIFZMy3aqKq7PQTxo0bQJjK8s2HFq_s2JkVoMJIqfInzJdjuMI/exec";
+const SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbw_SzR6wzviZYIaWWyBglWz3SNiyAfSr20R3qplleATUYdklWhnG2vT6gfTzpd4JfIL/exec";
+let submissionId = "";
+
+function getSubmissionId(){
+  if(!submissionId){
+    submissionId = "FT-" + Date.now() + "-" + Math.random().toString(36).slice(2,8).toUpperCase();
+  }
+  return submissionId;
+}
+
+function sendResultsToSheet(payload){
+  if(!SHEET_WEBHOOK_URL) return;
+  const body = JSON.stringify(payload);
+  try{
+    if(navigator.sendBeacon){
+      const blob = new Blob([body], {type:"text/plain;charset=utf-8"});
+      if(navigator.sendBeacon(SHEET_WEBHOOK_URL, blob)) return;
+    }
+  }catch(err){}
+  try{
+    fetch(SHEET_WEBHOOK_URL, {
+      method:"POST",
+      mode:"no-cors",
+      headers: {"Content-Type":"text/plain;charset=utf-8"},
+      body: body,
+      keepalive: true
+    }).catch(err => console.warn("Sheet send failed:", err));
+  }catch(err){
+    console.error("Không gửi được kết quả về Sheet:", err);
+  }
+}
+
+function buildSheetPayload(extra={}){
+  const vocabRes = scoreMcqFill(DATA.vocab, 'v');
+  const grammarRes = scoreMcqFill(DATA.grammar, 'g');
+  const readingRes = scoreMcqFill(flattenReadingItems(), 'r');
+  const listenRes = scoreListening();
+  const total90 = vocabRes.score + grammarRes.score + readingRes.score + listenRes.score;
+  const sInput = document.getElementById('speaking-score-input');
+  const sVal = sInput ? parseFloat(sInput.value) : NaN;
+  return {
+    action: extra.action || "submit",
+    submissionId: getSubmissionId(),
+    timestamp: new Date().toISOString(),
+    name: document.getElementById('stu-name').value || "Học sinh",
+    className: document.getElementById('stu-class').value || "",
+    vocab: vocabRes.score,
+    grammar: grammarRes.score,
+    reading: readingRes.score,
+    listening: listenRes.score,
+    total90: total90,
+    speaking: Number.isFinite(sVal) ? sVal : "",
+    total100: Number.isFinite(sVal) ? total90 + sVal : "",
+    ...extra
+  };
+}
+
+
 
 function sendResultsToSheet(payload){
   if(!SHEET_WEBHOOK_URL) return;
@@ -573,15 +630,7 @@ function submitTest(){
 
   const studentName = document.getElementById('stu-name').value || "Học sinh";
   const studentClass = document.getElementById('stu-class').value || "";
-  sendResultsToSheet({
-    name: studentName,
-    className: studentClass,
-    vocab: vocabRes.score,
-    grammar: grammarRes.score,
-    reading: readingRes.score,
-    listening: listenRes.score,
-    total90: total90
-  });
+  sendResultsToSheet(buildSheetPayload({action:"submit"}));
 
   let html = `
     <div class="card">
@@ -600,7 +649,7 @@ function submitTest(){
       <div style="background:var(--gold-100); border:1.5px solid var(--gold-500); border-radius:12px; padding:16px; margin-top:6px;">
         <p style="margin:0 0 8px; font-weight:700; color:var(--gold-700);">🎤 Phần 5 — Speaking (10 điểm, do giáo viên chấm)</p>
         <p class="muted" style="margin:0 0 10px;">Nhập điểm Speaking giáo viên đã chấm cho em để xem tổng điểm cuối cùng /100:</p>
-        <input type="number" min="0" max="10" step="0.5" id="speaking-score-input" class="qinput" style="max-width:120px;" placeholder="0-10" oninput="updateGrandTotal(${total90})">
+        <input type="number" min="0" max="10" step="0.5" id="speaking-score-input" class="qinput" style="max-width:120px;" placeholder="0-10" oninput="updateGrandTotal(${total90})"><button class="btn btn-primary" style="margin-left:10px;" onclick="saveSpeakingScore(${total90})">💾 Lưu điểm Speaking</button>
       </div>
       <div class="grand-total" id="grand-total-100" style="display:none; margin-top:16px;">
         <div class="num" id="grand-total-num"></div>
@@ -617,6 +666,21 @@ function submitTest(){
   document.getElementById('results-content').innerHTML = html;
   submitted = true;
   window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function saveSpeakingScore(total90){
+  const input = document.getElementById('speaking-score-input');
+  const sVal = parseFloat(input.value);
+  if(isNaN(sVal) || sVal < 0 || sVal > 10){
+    alert("Vui lòng nhập điểm Speaking từ 0 đến 10.");
+    return;
+  }
+  sendResultsToSheet(buildSheetPayload({
+    action:"update_speaking",
+    speaking:sVal,
+    total100:total90 + sVal
+  }));
+  alert("Đã gửi điểm Speaking về Sheet.");
 }
 
 function updateGrandTotal(total90){
