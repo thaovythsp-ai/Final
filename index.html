@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Final Test — Ms Vy IELTS Pre-IELTS Course</title>
+<style>
+  :root{
+    --red-900:#5c0a12; --red-800:#7a0e18; --red-700:#96121e; --red-600:#b3141f; --red-500:#c81e2a;
+    --gold-700:#a9781f; --gold-600:#c9962c; --gold-500:#d9ab3e; --gold-300:#ecc873; --gold-100:#faf1da;
+    --cream:#fffaf0; --paper:#fffefb; --ink:#2b1810; --ink-soft:#5c4436; --line:#e9d9b8;
+    --shadow: 0 10px 30px rgba(92,10,18,0.12);
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:90px;}
+  body{
+    margin:0; color:var(--ink); font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--cream);
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="420" height="220"><text x="0" y="40" font-family="Arial" font-size="22" font-weight="bold" fill="%23c9962c" fill-opacity="0.10" transform="rotate(-28 210 110)">MS VY IELTS</text><text x="-120" y="140" font-family="Arial" font-size="22" font-weight="bold" fill="%23b3141f" fill-opacity="0.07" transform="rotate(-28 210 110)">MS VY IELTS</text><text x="140" y="200" font-family="Arial" font-size="22" font-weight="bold" fill="%23c9962c" fill-opacity="0.10" transform="rotate(-28 210 110)">MS VY IELTS</text></svg>');
+    background-repeat: repeat;
+  }
+  .serif{ font-family: Georgia, 'Times New Roman', serif; }
+
+  header.top{
+    background: radial-gradient(1200px 300px at 10% -40%, rgba(217,171,62,0.35), transparent 60%),
+      linear-gradient(135deg, var(--red-900), var(--red-600) 70%);
+    color:#fff8ea; padding: 22px 20px 16px; padding-top: calc(22px + env(safe-area-inset-top, 0px));
+    border-bottom: 4px solid var(--gold-500); position:relative;
+  }
+  header.top::after{ content:""; position:absolute; left:0; right:0; bottom:-4px; height:4px;
+    background: repeating-linear-gradient(90deg, var(--gold-300) 0 18px, transparent 18px 26px); }
+  .brand{ max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .brand .mark{ width:48px; height:48px; border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--gold-300), var(--gold-600) 70%);
+    display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25); }
+  .brand h1{ font-size: clamp(19px,3.6vw,27px); margin:0; font-family:Georgia,serif; }
+  .brand p{ margin:3px 0 0; font-size:13px; color:var(--gold-300); }
+
+  nav.tabs{
+    max-width:1100px; margin:16px auto 0; display:flex; gap:8px; overflow-x:auto;
+    padding: 0 4px 4px; -webkit-overflow-scrolling:touch;
+  }
+  .tab-btn{
+    flex:0 0 auto; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.28);
+    color:#fff2d9; padding:9px 15px; border-radius:999px; cursor:pointer; font-size:13.5px; font-weight:700;
+    white-space:nowrap; transition: all .15s ease;
+  }
+  .tab-btn:hover{ background: rgba(255,255,255,0.16); }
+  .tab-btn.active{ background: var(--gold-500); border-color:var(--gold-500); color:#4a2c05; }
+  .tab-btn.done::after{ content:" ✓"; }
+
+  .wrap{ max-width:1000px; margin:0 auto; padding: 22px 18px 90px; }
+  .sheet{ display:none; }
+  .sheet.active{ display:block; animation: fadein .25s ease; }
+  @keyframes fadein{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .card{
+    background:var(--paper); border:1px solid var(--line); border-radius:16px;
+    padding: 22px 22px 26px; margin-bottom:20px; box-shadow: var(--shadow); position:relative; overflow:hidden;
+  }
+  .card::before{ content:""; position:absolute; top:0; left:0; width:6px; height:100%;
+    background: linear-gradient(var(--gold-500), var(--red-600)); }
+  .card h2{ font-family:Georgia,serif; color:var(--red-800); margin:0 0 4px; font-size: clamp(20px,3.4vw,26px); }
+  .card h3{ color:var(--red-700); margin: 0 0 12px; font-size:17px; }
+  .muted{ color:var(--ink-soft); font-size:14px; line-height:1.65; }
+  .badge{ display:inline-block; background:var(--gold-100); color:var(--gold-700); font-weight:700;
+    font-size:12px; padding:4px 10px; border-radius:999px; margin-bottom:10px; }
+
+  .qitem{ border:1px solid var(--line); border-radius:10px; padding:13px 15px; margin-bottom:11px; background:#fffef9; }
+  .qtext{ font-size:14.5px; line-height:1.55; margin-bottom:9px; }
+  .qinput{ width:100%; max-width:320px; font-size:14px; padding:8px 10px; border:1.5px solid var(--line);
+    border-radius:8px; }
+  .qinput:focus{ outline:none; border-color:var(--gold-600); }
+  .options{ display:flex; flex-direction:column; gap:7px; margin-top:4px; }
+  .opt-label{ display:flex; align-items:center; gap:8px; font-size:14px; padding:7px 10px; border:1.5px solid var(--line);
+    border-radius:8px; cursor:pointer; transition: all .12s ease; }
+  .opt-label:hover{ border-color:var(--gold-500); background:var(--gold-100); }
+  .opt-label input{ accent-color:var(--red-600); }
+  .opt-label.chosen{ border-color:var(--red-600); background:#fdecec; }
+
+  .passage{ background:#fffdf6; border:1px solid var(--line); border-radius:10px; padding:16px 18px;
+    font-size:14.5px; line-height:1.75; margin-bottom:18px; white-space:pre-line; max-height:420px; overflow-y:auto; }
+
+  /* reading side-by-side layout */
+  .reading-block{ display:grid; grid-template-columns: 1fr 1fr; gap:18px; align-items:start; margin-bottom:22px; }
+  .reading-passage-col{ position:sticky; top:14px; }
+  .reading-passage-col .passage{ max-height: calc(100vh - 160px); margin-bottom:0; }
+  .reading-questions-col{ max-height: calc(100vh - 160px); overflow-y:auto; padding-right:4px; }
+  .reading-section-label{ font-family:Georgia,serif; color:var(--red-700); font-weight:700; font-size:14.5px;
+    margin: 14px 0 8px; padding-bottom:4px; border-bottom:2px solid var(--gold-500); }
+  .reading-section-label:first-child{ margin-top:0; }
+  @media (max-width:900px){
+    .reading-block{ grid-template-columns: 1fr; }
+    .reading-passage-col{ position:static; }
+    .reading-passage-col .passage, .reading-questions-col{ max-height:none; overflow-y:visible; }
+  }
+
+  /* listening — exact form styling */
+  .ls-form{ width:100%; border-collapse:collapse; border:1px solid var(--line); margin-bottom:14px; }
+  .ls-form td{ padding:12px 14px; border-bottom:1px solid var(--line); font-size:14.5px; vertical-align:middle; }
+  .ls-form tr:last-child td{ border-bottom:none; }
+  .ls-form td.ls-label{ font-weight:700; width:38%; background:#fbf6ea; }
+  .ls-form td.ls-answer{ }
+  .ls-example{ font-style:italic; text-decoration:underline; font-weight:600; }
+  .num-circle{ display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px;
+    border-radius:50%; background:#6b6f76; color:#fff; font-size:12px; font-weight:700; margin-right:8px; flex-shrink:0; }
+  .blank-line{ border:none; border-bottom:1.5px solid #999; background:transparent; font-size:14.5px;
+    padding:2px 4px; min-width:110px; }
+  .blank-line:focus{ outline:none; border-bottom-color:var(--red-600); background:var(--gold-100); }
+  .ls-endings-box{ background:#f4f4f6; border:1px solid #ddd; border-radius:8px; padding:14px 16px; margin:10px 0 16px; max-width:420px; }
+  .ls-endings-box .end-row{ display:flex; align-items:center; gap:10px; margin-bottom:8px; font-size:14px; }
+  .ls-match-row{ display:flex; align-items:center; gap:10px; margin-bottom:10px; font-size:14.5px; }
+  .ls-match-row .blank-line{ min-width:50px; max-width:60px; text-align:center; }
+
+  .nav-buttons{ display:flex; justify-content:space-between; gap:10px; margin-top:18px; flex-wrap:wrap; }
+  .btn{ font-size:14px; font-weight:700; cursor:pointer; border:none; padding:11px 22px; border-radius:10px;
+    transition: all .15s ease; }
+  .btn-primary{ background: linear-gradient(135deg,var(--red-700),var(--red-500)); color:#fff8ea; }
+  .btn-primary:hover{ filter:brightness(1.08); }
+  .btn-secondary{ background:var(--gold-100); color:var(--gold-700); border:1.5px solid var(--gold-500); }
+  .btn-secondary:hover{ background:var(--gold-300); }
+  .btn-submit{ background: linear-gradient(135deg,#8a0f0f,#c81e2a); color:#fff; font-size:16px; padding:14px 30px; }
+  .btn:disabled{ opacity:.5; cursor:not-allowed; }
+
+  .listen-box{ background:var(--gold-100); border:1px solid var(--gold-300); border-radius:10px; padding:14px 16px; margin-bottom:16px; }
+  .audio-btn{ background:var(--red-600); color:#fff; border:none; padding:10px 18px; border-radius:999px;
+    font-weight:700; font-size:14px; cursor:pointer; display:inline-flex; align-items:center; gap:8px; }
+  .audio-btn:hover{ background:var(--red-700); }
+  .audio-btn.playing{ background:var(--gold-600); }
+
+  .form-table{ width:100%; border-collapse:collapse; margin-bottom:10px; }
+  .form-table td{ padding:9px 8px; border-bottom:1px solid var(--line); vertical-align:middle; font-size:14px; }
+  .form-table td.label{ font-weight:700; width:42%; }
+  .form-table input{ width:100%; padding:7px 9px; border:1.5px solid var(--line); border-radius:7px; font-size:14px; }
+
+  .cloze-blank{ display:inline-block; width:90px; padding:3px 6px; border:none; border-bottom:2px solid var(--red-600);
+    background:transparent; font-size:14.5px; text-align:center; font-weight:700; color:var(--red-700); }
+  .cloze-blank:focus{ outline:none; background:var(--gold-100); }
+
+  .result-summary{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin:18px 0; }
+  .score-card{ background:var(--gold-100); border:1.5px solid var(--gold-500); border-radius:12px; padding:16px; text-align:center; }
+  .score-card .num{ font-size:28px; font-weight:800; color:var(--red-700); font-family:Georgia,serif; }
+  .score-card .lbl{ font-size:12.5px; color:var(--gold-700); font-weight:700; margin-top:4px; }
+  .grand-total{ background:linear-gradient(135deg,var(--red-800),var(--red-600)); color:#fff8ea; border-radius:14px;
+    padding:22px; text-align:center; margin:20px 0; }
+  .grand-total .num{ font-size:44px; font-weight:800; font-family:Georgia,serif; }
+
+  .speaking-topic{ margin-bottom:16px; padding-bottom:12px; border-bottom:1px dashed var(--line); }
+  .speaking-topic h4{ color:var(--red-800); margin:0 0 8px; font-size:15.5px; }
+  .speaking-topic ul{ margin:0; padding-left:20px; font-size:14px; line-height:1.7; }
+
+  .review-item{ border-left:4px solid var(--line); padding:8px 12px; margin-bottom:8px; font-size:13.5px; border-radius:0 8px 8px 0; }
+  .review-item.correct{ border-color:#3fa85c; background:#eefaf0; }
+  .review-item.incorrect{ border-color:var(--red-600); background:#fdecec; }
+
+  footer{ text-align:center; padding:22px 20px 40px; color:var(--gold-700); font-size:12.5px; }
+
+  @media (max-width:640px){ .wrap{padding:16px 10px 70px;} .card{padding:16px;} }
+</style>
+</head>
+
+<body>
+<header class="top">
+  <div class="brand">
+    <div class="mark">🎓</div>
+    <div>
+      <h1>FINAL TEST — Pre-IELTS Course</h1>
+      <p>Vocabulary · Grammar · Reading · Listening · Speaking</p>
+    </div>
+  </div>
+  <nav class="tabs" id="tabs"></nav>
+</header>
+
+<div class="wrap">
+
+  <!-- SHEET 0: INTRO -->
+  <section class="sheet active" data-sheet="intro">
+    <div class="card">
+      <span class="badge">Welcome</span>
+      <h2>Final Test — Pre-IELTS Course</h2>
+      <p class="muted">
+        This test checks what you have learned throughout the course. It has <b>5 parts</b>:
+        <b>1) Vocabulary (25 questions)</b>, <b>2) Grammar (25 questions)</b>, <b>3) Reading (20 questions)</b>,
+        and <b>4) Listening (20 questions)</b> — these four parts are marked automatically out of a total of
+        <b>90 points</b>. <b>Part 5 — Speaking</b> will be marked separately by your teacher out of
+        <b>10 points</b>, giving a final total out of <b>100</b>.
+      </p>
+      <p class="muted">
+        <b>Instructions:</b> Work through each part using the tabs at the top. You may move freely between
+        parts and change your answers at any time before submitting. For the Listening part, please use
+        headphones if possible and press the play button to listen — you may replay the audio as many times
+        as you need. When you have finished all four parts, go to the last tab and press
+        <b>"Nộp bài — Submit Test"</b> to see your results.
+      </p>
+      <p class="muted">Good luck! 💪</p>
+      <table class="form-table" style="margin-top:14px;">
+        <tr><td class="label">Full name:</td><td><input type="text" id="stu-name" placeholder="Your name"></td></tr>
+        <tr><td class="label">Class:</td><td><input type="text" id="stu-class" placeholder="Your class"></td></tr>
+      </table>
+      <div class="nav-buttons">
+        <span></span>
+        <button class="btn btn-primary" onclick="goSheet('vocab')">Start Test →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHEET 1: VOCAB -->
+  <section class="sheet" data-sheet="vocab">
+    <div class="card">
+      <span class="badge">Part 1 / 25 questions</span>
+      <h2>Vocabulary</h2>
+      <p class="muted">Choose the correct answer or fill in the blank with one suitable word.</p>
+    </div>
+    <div class="card" id="vocab-list"></div>
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goSheet('intro')">← Back</button>
+      <button class="btn btn-primary" onclick="goSheet('grammar')">Next: Grammar →</button>
+    </div>
+  </section>
+
+  <!-- SHEET 2: GRAMMAR -->
+  <section class="sheet" data-sheet="grammar">
+    <div class="card">
+      <span class="badge">Part 2 / 25 questions</span>
+      <h2>Grammar</h2>
+      <p class="muted">Complete each sentence with the correct form of the word(s) in brackets, or choose the best option.</p>
+    </div>
+    <div class="card" id="grammar-list"></div>
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goSheet('vocab')">← Back</button>
+      <button class="btn btn-primary" onclick="goSheet('reading')">Next: Reading →</button>
+    </div>
+  </section>
+
+  <!-- SHEET 3: READING -->
+  <section class="sheet" data-sheet="reading">
+    <div class="card">
+      <span class="badge">Part 3 / 20 questions</span>
+      <h2>Reading</h2>
+      <p class="muted">Read the two passages carefully, then answer the questions below each one.</p>
+    </div>
+    <div id="reading-content"></div>
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goSheet('grammar')">← Back</button>
+      <button class="btn btn-primary" onclick="goSheet('listening')">Next: Listening →</button>
+    </div>
+  </section>
+
+  <!-- SHEET 4: LISTENING -->
+  <section class="sheet" data-sheet="listening">
+    <div class="card">
+      <span class="badge">Part 4 / 20 questions</span>
+      <h2>Listening</h2>
+      <p class="muted">The teacher will play the recordings for the whole class. Listen carefully and complete your answers below.</p>
+    </div>
+    <div id="listening-content"></div>
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goSheet('reading')">← Back</button>
+      <button class="btn btn-primary" onclick="goSheet('speaking')">Next: Speaking →</button>
+    </div>
+  </section>
+
+  <!-- SHEET 5: SPEAKING -->
+  <section class="sheet" data-sheet="speaking">
+    <div class="card">
+      <span class="badge">Part 5 · 10 points · Marked by your teacher</span>
+      <h2>Speaking</h2>
+      <p class="muted">Your teacher will ask you questions from the topics below (Part 1 style). This part is
+      not self-marked — your teacher will give you a score out of 10 after your speaking test.</p>
+    </div>
+    <div class="card" id="speaking-list"></div>
+    <div class="nav-buttons">
+      <button class="btn btn-secondary" onclick="goSheet('listening')">← Back</button>
+      <button class="btn btn-primary" onclick="goSheet('results')">Next: Submit & Results →</button>
+    </div>
+  </section>
+
+  <!-- SHEET 6: RESULTS -->
+  <section class="sheet" data-sheet="results">
+    <div class="card">
+      <span class="badge">Final Step</span>
+      <h2>Submit &amp; Results</h2>
+      <p class="muted">Please make sure you have answered all the questions in Parts 1–4. When you are ready, press the button below to submit and see your score.</p>
+      <div class="nav-buttons" style="justify-content:center;">
+        <button class="btn btn-submit" onclick="submitTest()">✅ Nộp bài — Submit Test</button>
+      </div>
+    </div>
+    <div id="results-content"></div>
+  </section>
+
+</div>
+
+<footer>Ms Vy IELTS · Pre-IELTS Course Final Test · Chúc các em làm bài thật tốt! 🌟</footer>
+
+<script>
+const DATA = {"vocab": [{"type": "mcq", "q": "1. My uncle works at a car ______, where hundreds of vehicles are made every day.", "options": ["factory", "gallery", "harbour", "castle"], "correct": 0}, {"type": "mcq", "q": "2. She loves art, so she visits the ______ in the city centre every month to see new paintings.", "options": ["gallery", "museum", "library", "stadium"], "correct": 0}, {"type": "mcq", "q": "3. During rush hour, the streets in the city centre are so ______ that it's hard to walk quickly.", "options": ["crowded", "quiet", "empty", "peaceful"], "correct": 0}, {"type": "mcq", "q": "4. Before flying abroad next week, remember to check that your ______ hasn't expired.", "options": ["passport", "visa", "ticket", "wallet"], "correct": 0}, {"type": "mcq", "q": "5. It was such a bright, sunny day at the beach that I had to wear my ______ to protect my eyes.", "options": ["backpack", "sunglasses", "wallet", "map"], "correct": 1}, {"type": "mcq", "q": "6. If you need a new novel to read this weekend, there's a good ______ just around the corner.", "options": ["bookstore", "drugstore", "grocery store", "jewelry store"], "correct": 0}, {"type": "mcq", "q": "7. Before adding the onions to the pan, please ______ them into small pieces first.", "options": ["boil", "chop", "fry", "mix"], "correct": 1}, {"type": "mcq", "q": "8. I love ______ because I can go skiing and drink hot chocolate by the fire.", "options": ["winter", "summer", "autumn", "spring"], "correct": 0}, {"type": "mcq", "q": "9. At midnight on New Year's Eve, everyone went outside to watch the ______ light up the sky.", "options": ["parade", "costumes", "fireworks", "balloons"], "correct": 2}, {"type": "mcq", "q": "10. After four years of hard study, she finally ______ from university with a degree in medicine.", "options": ["graduated", "travelled", "volunteered", "resigned"], "correct": 0}, {"type": "mcq", "q": "11. After the long, physically demanding match, all the players looked completely ______.", "options": ["bored", "tired", "relaxed", "satisfied"], "correct": 1}, {"type": "mcq", "q": "12. Eating plenty of vegetables and exercising regularly are both important parts of a ______ lifestyle.", "options": ["healthy", "busy", "expensive", "boring"], "correct": 0}, {"type": "mcq", "q": "13. Cutting down large areas of forest to make space for farmland is a form of ______.", "options": ["recycling", "deforestation", "conservation", "pollution"], "correct": 1}, {"type": "mcq", "q": "14. Solar and wind power are examples of ______ energy because they will never run out.", "options": ["renewable", "harmful", "artificial", "expensive"], "correct": 0}, {"type": "mcq", "q": "15. My grandmother finds it hard to use her new ______ because the screen and apps are too complicated for her.", "options": ["landline telephone", "smartphone", "desktop computer", "power bank"], "correct": 1}, {"type": "mcq", "q": "16. My laptop suddenly ______ while I was writing an important email, and I lost all my work.", "options": ["crashed", "downloaded", "uploaded", "streamed"], "correct": 0}, {"type": "mcq", "q": "17. Because he grew up in three different countries, he is ______ and can easily switch between languages.", "options": ["multilingual", "forgetful", "impatient", "unemployed"], "correct": 0}, {"type": "mcq", "q": "18. I always write new words I learn in class into my ______ notebook so I don't forget them.", "options": ["vocabulary", "diary", "address", "telephone"], "correct": 0}, {"type": "mcq", "q": "19. \"I've already booked the flights and packed my bags — I'm going to Japan next month.\" This sentence expresses:", "options": ["a sudden decision made now", "a plan decided before now", "a promise", "a general fact"], "correct": 1}, {"type": "mcq", "q": "20. This old wallet is made of real ______, which is why it has lasted for over ten years.", "options": ["leather", "plastic", "glass", "wood"], "correct": 0}, {"type": "mcq", "q": "21. If you have a headache, you can buy some paracetamol at the ______ near the supermarket.", "options": ["drugstore", "bookstore", "jewelry store", "sporting goods store"], "correct": 0}, {"type": "mcq", "q": "22. We arrived at the ______ three hours early because international flights require extra check-in time.", "options": ["airport", "harbour", "station", "platform"], "correct": 0}, {"type": "mcq", "q": "23. Whenever I smell fresh bread, it ______ my grandmother's kitchen when I was a child.", "options": ["reminds me of", "forgets about", "makes me sad about", "ignores"], "correct": 0}, {"type": "mcq", "q": "24. Because she has visited over thirty countries, her friends often jokingly call her \"the ______\" of the group.", "options": ["traveller", "farmer", "librarian", "mechanic"], "correct": 0}, {"type": "mcq", "q": "25. The Eiffel ______ is one of the most famous landmarks in the world, standing over 300 metres tall.", "options": ["bridge", "tower", "statue", "stadium"], "correct": 1}], "grammar": [{"type": "mcq", "q": "1. There ______ a stadium in the centre of my city.", "options": ["is", "are", "be", "was"], "correct": 0}, {"type": "mcq", "q": "2. This new bridge is ______ than the old one.", "options": ["safer", "more safe", "safest", "more safer"], "correct": 0}, {"type": "mcq", "q": "3. Last year, my family ______ to Da Nang for a week.", "options": ["travel", "travels", "travelled", "travelling"], "correct": 2}, {"type": "mcq", "q": "4. A: The phone is ringing! B: I ______ it.", "options": ["answer", "answered", "'ll answer", "am answering"], "correct": 2}, {"type": "mcq", "q": "5. He ______ to work yesterday because he was ill.", "options": ["doesn't go", "didn't go", "hasn't gone", "isn't going"], "correct": 1}, {"type": "mcq", "q": "6. What ______ right now?", "options": ["do you do", "are you doing", "did you do", "will you do"], "correct": 1}, {"type": "mcq", "q": "7. We usually ______ our grandparents on Sundays.", "options": ["visit", "visits", "visited", "are visiting"], "correct": 0}, {"type": "mcq", "q": "8. The final match was extremely exciting, and all the fans felt very ______.", "options": ["excited", "exciting", "excite", "excitement"], "correct": 0}, {"type": "mcq", "q": "9. You ______ drink more water every day to stay healthy.", "options": ["should", "shouldn't", "must not", "can't"], "correct": 0}, {"type": "mcq", "q": "10. Students ______ stay up all night before an exam.", "options": ["should", "shouldn't", "must", "can"], "correct": 1}, {"type": "mcq", "q": "11. There isn't ______ rubbish in this park, which is great.", "options": ["much", "many", "some", "a few"], "correct": 0}, {"type": "mcq", "q": "12. Are there ______ recycling bins near your school?", "options": ["some", "any", "much", "a lot"], "correct": 1}, {"type": "mcq", "q": "13. When I was young, I ______ swim, but now I ______ swim very well.", "options": ["can / could", "couldn't / can", "can / can", "could / could"], "correct": 1}, {"type": "mcq", "q": "14. She ______ buy a new laptop — she has already saved enough money.", "options": ["will", "is going to", "can", "should"], "correct": 1}, {"type": "mcq", "q": "15. I think robots ______ do many jobs in the future.", "options": ["will", "are going to", "can", "should"], "correct": 0}, {"type": "mcq", "q": "16. I ______ this bicycle since I was twelve years old.", "options": ["have", "had", "have had", "has had"], "correct": 2}, {"type": "mcq", "q": "17. My grandmother ______ me this watch on my birthday, and I ______ it every day since then.", "options": ["gave / have worn", "gives / wore", "has given / wear", "gave / wore"], "correct": 0}, {"type": "mcq", "q": "18. I enjoyed the concert, ______ I was very tired afterwards.", "options": ["but", "because", "then", "too"], "correct": 0}, {"type": "mcq", "q": "19. ______ we had finished dinner, we watched the fireworks together.", "options": ["After", "When", "But", "Too"], "correct": 0}, {"type": "mcq", "q": "20. This is ______ book I have ever read.", "options": ["the most interesting", "more interesting", "the interesting", "most interested"], "correct": 0}, {"type": "mcq", "q": "21. If you ______ flour, water and yeast, you can make bread dough.", "options": ["mix", "mixed", "mixing", "are mixing"], "correct": 0}, {"type": "mcq", "q": "22. Manchester United is ______ football club in the country.", "options": ["the most successful", "more successful", "the successfullest", "most success"], "correct": 0}, {"type": "mcq", "q": "23. We ______ much time left, so let's hurry!", "options": ["don't have", "doesn't have", "didn't have", "haven't had"], "correct": 0}, {"type": "mcq", "q": "24. Next year, I ______ to take the IELTS exam, so I ______ hard this year.", "options": ["am planning / am studying", "plan / study", "planned / studied", "will plan / will study"], "correct": 0}, {"type": "mcq", "q": "25. Yesterday it rained all day, but today the weather ______ much better.", "options": ["is", "was", "will be", "has been"], "correct": 0}], "reading": {"passages": [{"title": "READING 1 — THE BENEFITS OF A FOUR-DAY SCHOOL WEEK", "text": "In many countries, schools normally operate five days a week. However, a small but growing number of schools have begun experimenting with a four-day school week. Instead of reducing the total number of lessons, some schools make each school day slightly longer. Supporters believe this schedule may give students and teachers more time to rest, while critics are concerned about its effect on learning and families.\n\nOne secondary school in northern England introduced a four-day timetable as a one-year trial. Students attended classes from Monday to Thursday, with the school day ending about forty minutes later than before. Friday was used for optional activities, teacher planning and individual study. Students who needed extra support could still come to school on Fridays.\n\nAt first, some students found the longer school days tiring. After several weeks, however, many said they had adjusted to the new timetable. Several students also reported that they used Fridays to catch up on homework, take part in sports or spend more time with their families. Teachers said that having an extra day for planning helped them prepare lessons more carefully.\n\nThe new timetable did create some difficulties. Parents who worked on Fridays sometimes had problems arranging childcare, particularly for younger children. In addition, not all students used the extra day productively. Some spent most of Friday playing games or watching videos instead of studying.\n\nAt the end of the trial, the school reported that attendance had remained stable and students' academic results had not fallen. However, the school also said that the experiment could not provide a simple answer about whether a four-day week was better. Its success depended on how students, teachers and families used the additional time.", "groups": [{"section": "A. MAIN IDEA", "items": [{"type": "mcq", "q": "1. What is the main idea of the passage?", "options": ["A four-day week always improves students' school results.", "A four-day timetable may bring benefits but also create difficulties.", "Students should spend every Friday completing schoolwork at home.", "Schools should make every school day slightly longer than before."], "correct": 1}]}, {"section": "B. MULTIPLE CHOICE", "items": [{"type": "mcq", "q": "2. Why did the school make each school day slightly longer?", "options": ["To give teachers more time to prepare after lessons.", "To replace Friday lessons without greatly reducing teaching time.", "To allow students to finish school earlier on Thursday.", "To prepare students for longer working hours later."], "correct": 1}, {"type": "mcq", "q": "3. What was one use of Fridays at the school?", "options": ["Students were required to complete extra exams.", "Teachers had to teach additional classes.", "Students could receive extra academic support.", "Parents were expected to attend school meetings."], "correct": 2}, {"type": "mcq", "q": "4. What did some students say after they became used to the new timetable?", "options": ["They had more opportunities to manage their time outside school.", "They preferred studying at school on Friday instead.", "They found the shorter school week more stressful overall.", "They wanted the school day to become even longer overall."], "correct": 0}, {"type": "mcq", "q": "5. What problem did some working parents experience?", "options": ["They had to work longer hours at the weekend.", "They could not arrange suitable care for their children on Friday.", "They were asked to help teachers plan lessons.", "They had to collect their children earlier every day."], "correct": 1}, {"type": "mcq", "q": "6. What did teachers say was a benefit of having Friday for planning?", "options": ["They could reduce the number of lessons they taught.", "They could prepare their lessons more carefully.", "They could avoid communicating with students.", "They could finish their work before Thursday."], "correct": 1}, {"type": "mcq", "q": "7. What happened to students' academic results during the trial?", "options": ["They improved considerably during the trial period.", "They fell slightly during the trial period.", "They remained stable during the trial period.", "The school did not examine them during the trial."], "correct": 2}]}, {"section": "C. TRUE / FALSE / NOT GIVEN", "items": [{"type": "mcq", "q": "8. The four-day timetable was introduced as a permanent change.", "options": ["True", "False", "Not Given"], "correct": 1}, {"type": "mcq", "q": "9. Some students used Friday for activities other than studying.", "options": ["True", "False", "Not Given"], "correct": 0}, {"type": "mcq", "q": "10. The school believed that the experiment proved a four-day week was suitable for every school.", "options": ["True", "False", "Not Given"], "correct": 1}]}]}, {"title": "READING 2 — WHY SOME PEOPLE CHOOSE TO REPAIR INSTEAD OF REPLACE", "text": "When a household appliance or electronic device stops working, many people immediately consider buying a new one. This is partly because new products are widely available and can sometimes be cheaper than professional repairs. However, a growing number of consumers are choosing to repair their belongings instead. They argue that repairing an item can save money, reduce waste and help people understand how everyday products work.\n\nOne example is the rise of community repair cafes. These are places where people bring broken household items and receive help from volunteers who have experience fixing them. Visitors may bring anything from a lamp with a damaged cable to a small kitchen appliance that no longer switches on. The aim is not simply to fix the object but also to teach the owner how the repair is done.\n\nAt one repair cafe in Manchester, volunteers noticed that many visitors were nervous about opening electronic devices. They worried that they might make the problem worse. To deal with this, volunteers began explaining each step before carrying it out. Visitors were encouraged to ask questions and, when possible, do part of the repair themselves. According to the organisers, this approach made people more confident about attempting simple repairs at home.\n\nRepairing is not always the best option, however. Some products are difficult to open safely, and replacement parts may be unavailable or expensive. In other cases, a new product may use significantly less energy than an old one, making replacement more sensible in the long term. For this reason, repair cafes usually encourage people to consider the age, condition and cost of an item before deciding what to do.\n\nThe repair movement has also influenced the way some people think about consumption. Instead of viewing broken objects as useless, they may begin to see them as products that still have value. Even when an item cannot be repaired, learning why it failed can help consumers make more informed choices when buying their next product.", "groups": [{"section": "A. MAIN IDEA", "items": [{"type": "mcq", "q": "11. What is the main idea of the passage?", "options": ["Repair cafes are mainly designed to sell replacement parts.", "Repairing everyday objects can reduce waste and build practical skills.", "Electronic devices are usually easy for anyone to repair alone.", "People should never buy new household products again."], "correct": 1}]}, {"section": "B. MULTIPLE CHOICE", "items": [{"type": "mcq", "q": "12. What is one purpose of community repair cafes?", "options": ["To teach people how to make completely new products.", "To help people repair items while learning about the process.", "To provide free household appliances to local residents.", "To test whether new electronic products are safe."], "correct": 1}, {"type": "mcq", "q": "13. Why were some visitors nervous about repairing electronic devices?", "options": ["They thought the volunteers would charge them a high fee.", "They had never used electronic products before.", "They were afraid of causing additional damage.", "They did not know where to buy replacement products."], "correct": 2}, {"type": "mcq", "q": "14. How did the Manchester repair cafe respond to this problem?", "options": ["It stopped repairing electronic devices completely.", "It asked visitors to leave repairs to the volunteers.", "It explained the process and encouraged visitors to participate.", "It provided every visitor with a new appliance instead."], "correct": 2}, {"type": "mcq", "q": "15. According to the passage, when might replacing an item be a better choice?", "options": ["When the owner has never repaired anything before.", "When the item is old and a newer, more efficient model is available.", "When the item was originally bought from a repair cafe.", "When the repair can be completed quickly."], "correct": 1}, {"type": "mcq", "q": "16. What can people learn even if an item cannot be repaired?", "options": ["How to sell the broken item for a higher price.", "Why the product failed and how to make more informed choices.", "How to avoid buying any electronic products later.", "Why all old products should be replaced immediately."], "correct": 1}, {"type": "mcq", "q": "17. What does the passage suggest about the idea of a broken object being 'useless'?", "options": ["The idea is questioned by the repair movement.", "It is accepted by most repair cafes.", "It applies only to kitchen appliances.", "It is supported by volunteers in Manchester."], "correct": 0}]}, {"section": "C. TRUE / FALSE / NOT GIVEN", "items": [{"type": "mcq", "q": "18. Repair cafes only accept electronic devices.", "options": ["True", "False", "Not Given"], "correct": 1}, {"type": "mcq", "q": "19. Visitors at the Manchester repair cafe were sometimes allowed to carry out part of a repair themselves.", "options": ["True", "False", "Not Given"], "correct": 0}, {"type": "mcq", "q": "20. The repair movement has encouraged some people to think differently about the value of broken objects.", "options": ["True", "False", "Not Given"], "correct": 0}]}]}]}, "listen1": {"title": "LISTENING 1 — Moving Company Service Report", "instructions": "Questions 1–6: Complete the form. Write NO MORE THAN TWO WORDS AND/OR A NUMBER for each answer. Questions 7–10: Choose the correct letter, A, B or C.", "script": "Good afternoon, thank you for calling Speedy Movers, how can I help you today? Hi, I'd like to book a moving service, please. Sure, may I have your full name? Yes, it's Jane Bond. Great, and a phone number where we can reach you? It's nine four six three five five five zero. Perfect. Could you tell me your address in the USA? Yes, it's five oh nine Clark House, eleven thirty-seven University Drive, Seattle. Got it. Now, when would you like us to come and pack your things? Could you come on Monday, please? Of course. And what date would that be? That would be the eleventh of March. And what time should our team finish the clean-up? By five p.m., if possible. No problem. Now, we usually deliver a few days after packing day. Would Thursday the fourteenth work for you? Yes, Thursday the fourteenth is perfect. Great. Just so you know, our service is rather expensive compared to other companies, but we guarantee careful handling. That's fine. Will you need storage as well? Yes, for about a month, please. No problem. Now let's talk about your smaller items. For your cutlery and dishes, we'll place them in an emergency pack so you have them ready as soon as you arrive. Sounds good. Your kettle will go into storage together with the furniture, since you probably won't need it right away. Okay. Your alarm clock will go into your personal package, so you'll have it with you during the move. Great. And your CD player will also go into storage with the furniture, if that's alright. That's fine, thank you. Perfect, thank you Ms Bond, we'll see you on Monday the eleventh of March.", "form_items": [{"n": 1, "label": "Phone Number:", "answer": "94635550"}, {"n": 2, "label": "USA Address (first part):", "answer": "509 Clark House", "prefix": "509"}, {"n": 3, "label": "USA Address (second part):", "answer": "University Drive", "prefix": "1137"}, {"n": 4, "label": "Packing Day:", "answer": "Monday"}, {"n": 5, "label": "Delivery Day (before the 14th):", "answer": "Thursday"}, {"n": 6, "label": "Storage Time:", "answer": "a month"}], "match_items": [{"n": 7, "label": "cutlery and dishes", "answer": "A"}, {"n": 8, "label": "kettle", "answer": "C"}, {"n": 9, "label": "alarm clock", "answer": "B"}, {"n": 10, "label": "CD player", "answer": "C"}], "match_options": [["A", "in emergency pack"], ["B", "in personal package"], ["C", "in storage with the furniture"]]}, "listen2": {"title": "LISTENING 2 — Weather Forecast", "instructions": "Listen and complete the text. Write ONE WORD in each gap.", "script": "Hello and good morning! Well, we're off to a good start in the south this week, as most of the rain from the weekend has disappeared – just a few patches of cloud and maybe some showers here on the east coast. They'll all clear up by lunchtime, though. Over the next day or so, London and the area around Kent can expect a couple of isolated showers, but mostly dry through until Thursday. It's not such good news for the north-west this week, I'm afraid: more wet weather, and not a lot of sunshine. Some of today's showers will be heavy – and even thundery in Manchester and across the Pennines. Leeds will escape the thunderstorms, with drizzle and light rain only throughout the rest of the day and tonight. Elsewhere it becomes dry today, but with some foggy patches towards Wales. In England, tomorrow morning will see a dry, bright start in most places, with high temperatures throughout the week. We might see one or two thunderstorms appearing as the week goes on, with temperatures everywhere at 29 to 30 degrees. By the weekend, unfortunately, the dry weather will make way for mostly cloudy skies and rain. The rain will move from Scotland, down towards the north and reach the south coast by Saturday afternoon. Temperatures, at least, will stay mostly warm at around 21 degrees for the weekend. It might feel like a nice change from the high twenties and early thirties we'll see in the week. That's all from me until tomorrow. Enjoy the mini-heatwave while you can!", "display": "Hello and good morning! Well, we're off to a good start in the south this week, as most of the rain from the weekend has disappeared – just a few patches of ___1___ and maybe some showers here on the east coast. They'll all clear up by lunchtime, though. Over the next day or so, London and the area around Kent can expect a couple of isolated showers, but mostly ___2___ through until Thursday.\n\nIt's not such good news for the north-west this week, I'm afraid: more wet weather, and not a lot of ___3___. Some of today's showers will be heavy – and even thundery in Manchester and across the Pennines. Leeds will escape the thunderstorms, with drizzle and light rain only throughout the rest of the day and ___4___.\n\nElsewhere it becomes dry today, but with some ___5___ patches towards Wales. In England, tomorrow morning will see a dry, bright start in most places, with high ___6___ throughout the week. We might see one or two thunderstorms appearing as the week goes on, with temperatures everywhere at 29 to 30 ___7___.\n\nBy the weekend, unfortunately, the dry weather will make way for mostly ___8___ skies and rain. The rain will move from Scotland, down towards the north and reach the ___9___ coast by Saturday afternoon. Temperatures, at least, will stay mostly ___10___ at around 21 degrees for the weekend. It might feel like a nice change from the high twenties and early thirties we'll see in the week. That's all from me until tomorrow. Enjoy the mini-heatwave while you can!", "answers": ["cloud", "dry", "sunshine", "tonight", "foggy", "temperatures", "degrees", "cloudy", "south", "warm"]}, "speaking": [{"topic": "Cities", "icon": "🏙️", "questions": ["Where is your hometown?", "What is your hometown like?", "What do you like most about your hometown?", "Is there anything you don't like about your hometown?", "Has your hometown changed much over the years?", "What do people usually do for fun in your hometown?", "Would you recommend your hometown to tourists? Why or why not?"]}, {"topic": "Shopping", "icon": "🛍️", "questions": ["How often do you go shopping, and who do you usually go with?", "Do you prefer shopping in stores or shopping online? Why?", "What was the last thing you bought? Why did you buy it?", "Are you going to buy anything special next month? What is it?"]}, {"topic": "Hobbies", "icon": "🎨", "questions": ["What is your favourite leisure activity?", "Do you prefer relaxing activities or adventurous ones?", "What are you doing this weekend?"]}, {"topic": "Weather", "icon": "⛅", "questions": ["What's the weather like in your country?", "Do you prefer hot weather or cold weather? Why?", "Has the weather changed much in your country in recent years?", "What's your favourite season? Why?"]}, {"topic": "Special Occasions", "icon": "🎉", "questions": ["What is your favourite special occasion?", "How do you usually celebrate your birthday?", "Do you give presents on special occasions?", "What do people in your country wear at festivals?", "Do you prefer big parties or quiet celebrations? Why?", "When did you last celebrate something with your family?"]}, {"topic": "Important Events", "icon": "🎓", "questions": ["What was the last important event you attended?", "Do you often celebrate important events with your family?", "What kind of events are important in your country?", "How do you usually celebrate a special event?", "Was there an important event in your childhood that you remember well?", "Do you prefer big celebrations or small, quiet ones?"]}, {"topic": "Healthy Lifestyle", "icon": "🥗", "questions": ["Do you do any healthy activities regularly? How often?", "Do you think these activities are healthy? Why / why not?", "Which activity would help you deal with stress before an exam? Why?"]}, {"topic": "Environment", "icon": "🌍", "questions": ["Do you think air pollution is a big problem in your city?", "What do you usually do to protect the environment?", "Is there much rubbish in your neighbourhood?", "Do you use plastic bags when you go shopping?", "Are there many trees or parks near your home?", "What can people do to save water at home?"]}, {"topic": "Language", "icon": "🗣️", "questions": ["What languages can you speak?", "Do you think it's difficult to learn a new language? Why / why not?", "How do you usually practise your English outside class?", "Would you like to learn another foreign language in the future? Why?"]}, {"topic": "Possessions", "icon": "🎒", "questions": ["What's your most valuable possession?", "Do you have a lot of possessions?", "What kind of things do you like to collect?", "Do you often buy new things?", "Would you like to own more possessions in the future?", "What possession would you save first in an emergency?"]}]};
+const SHEETS = ["intro","vocab","grammar","reading","listening","speaking","results"];
+const TAB_LABELS = {intro:"Giới thiệu", vocab:"1. Vocabulary", grammar:"2. Grammar", reading:"3. Reading",
+  listening:"4. Listening", speaking:"5. Speaking", results:"Kết quả"};
+let activeSheet = "intro";
+let submitted = false;
+
+function esc(s){ return String(s===undefined||s===null?"":s); }
+
+function normalize(s){
+  return String(s||"").toLowerCase()
+    .replace(/[’‘]/g,"'").replace(/[“”]/g,'"').replace(/[.,;!?"]/g,"")
+    .replace(/\bcannot\b/g,"can not")
+    .replace(/won't/g,"will not").replace(/isn't/g,"is not").replace(/aren't/g,"are not")
+    .replace(/doesn't/g,"does not").replace(/don't/g,"do not").replace(/didn't/g,"did not")
+    .replace(/hasn't/g,"has not").replace(/haven't/g,"have not").replace(/couldn't/g,"could not")
+    .replace(/shouldn't/g,"should not").replace(/wasn't/g,"was not").replace(/weren't/g,"were not")
+    .replace(/'ll\b/g," will").replace(/'m\b/g," am").replace(/'re\b/g," are")
+    .replace(/'ve\b/g," have").replace(/'s\b/g," is")
+    .replace(/\s+/g," ").trim();
+}
+
+function fillCorrect(userRaw, correctRaw){
+  const user = normalize(userRaw);
+  if(!user) return false;
+  if(correctRaw.includes("...")){
+    const parts = correctRaw.split("...").map(p=>normalize(p)).filter(p=>p.length>0);
+    return parts.every(p=>user.includes(p));
+  }
+  const alts = correctRaw.split("/").map(a=>normalize(a)).filter(a=>a.length>0);
+  for(const alt of alts){
+    if(user===alt) return true;
+    if(alt.length>3 && (user.includes(alt) || alt.includes(user))) return true;
+  }
+  return false;
+}
+
+function renderTabs(){
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = SHEETS.map(s=>`<button class="tab-btn ${s===activeSheet?'active':''}" onclick="goSheet('${s}')">${TAB_LABELS[s]}</button>`).join("");
+}
+
+function goSheet(name){
+  activeSheet = name;
+  document.querySelectorAll('.sheet').forEach(el=>{
+    el.classList.toggle('active', el.getAttribute('data-sheet')===name);
+  });
+  renderTabs();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ---------- MCQ / FILL renderer ----------
+function renderQuestion(item, idPrefix, idx){
+  const id = `${idPrefix}-${idx}`;
+  if(item.type === "mcq"){
+    let opts = item.options.map((o,oi)=>`
+      <label class="opt-label" id="optlabel-${id}-${oi}">
+        <input type="radio" name="q-${id}" value="${oi}" onchange="selectOpt('${id}',${oi})">
+        <span>${String.fromCharCode(65+oi)}. ${esc(o)}</span>
+      </label>`).join("");
+    return `<div class="qitem" id="item-${id}" data-qid="${id}">
+      <div class="qtext">${esc(item.q)}</div>
+      <div class="options">${opts}</div>
+    </div>`;
+  } else {
+    return `<div class="qitem" id="item-${id}" data-qid="${id}">
+      <div class="qtext">${esc(item.q)}</div>
+      <input class="qinput" id="input-${id}" type="text" placeholder="Type your answer...">
+    </div>`;
+  }
+}
+
+function selectOpt(id, oi){
+  const item = document.getElementById('item-'+id);
+  item.querySelectorAll('.opt-label').forEach(l=>l.classList.remove('chosen'));
+  document.getElementById(`optlabel-${id}-${oi}`).classList.add('chosen');
+}
+
+function renderVocab(){
+  document.getElementById('vocab-list').innerHTML = DATA.vocab.map((it,i)=>renderQuestion(it,'v',i)).join("");
+}
+function renderGrammar(){
+  document.getElementById('grammar-list').innerHTML = DATA.grammar.map((it,i)=>renderQuestion(it,'g',i)).join("");
+}
+
+function renderReading(){
+  let html = "";
+  let globalIdx = 0;
+  DATA.reading.passages.forEach((p,pi)=>{
+    let qCol = "";
+    p.groups.forEach(group=>{
+      qCol += `<div class="reading-section-label">${esc(group.section)}</div>`;
+      group.items.forEach(it=>{
+        qCol += renderQuestion(it, 'r', globalIdx);
+        globalIdx++;
+      });
+    });
+    html += `<div class="card">
+      <h3>${esc(p.title)}</h3>
+      <div class="reading-block">
+        <div class="reading-passage-col"><div class="passage">${esc(p.text)}</div></div>
+        <div class="reading-questions-col">${qCol}</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('reading-content').innerHTML = html;
+}
+function flattenReadingItems(){
+  let out = [];
+  DATA.reading.passages.forEach(p=>{ p.groups.forEach(g=>{ g.items.forEach(it=>out.push(it)); }); });
+  return out;
+}
+
+// ---------- Listening ----------
+function stopSpeak(){ if('speechSynthesis' in window) window.speechSynthesis.cancel(); }
+
+function renderListening(){
+  let html = "";
+  // Listening 1 — replicated exactly as the original worksheet form
+  const L1 = DATA.listen1;
+  html += `<div class="card">
+    <p class="muted" style="font-weight:700; margin:0 0 4px;">Question 1 – 6</p>
+    <p class="muted" style="margin:0 0 4px;">Complete the form below.</p>
+    <p class="muted" style="margin:0 0 14px;">Write <b>NO MORE THAN TWO WORDS AND/OR A NUMBER</b> for each answer.</p>
+    <h3 style="margin-bottom:10px;">Moving Company Service Report</h3>
+    <table class="ls-form">
+      <tr><td class="ls-label">Example<br>Full Name:</td><td class="ls-answer"><span class="ls-example">Jane Bond</span></td></tr>
+      <tr><td class="ls-label">Phone Number:</td><td class="ls-answer"><span class="num-circle">1</span><input class="blank-line" id="input-l1-1" type="text"></td></tr>
+      <tr><td class="ls-label">USA Address:</td><td class="ls-answer">
+          509&nbsp;<span class="num-circle">2</span><input class="blank-line" id="input-l1-2" type="text"><br><br>
+          1137&nbsp;<span class="num-circle">3</span><input class="blank-line" id="input-l1-3" type="text">, Seattle
+      </td></tr>
+      <tr><td class="ls-label">Packing Day:</td><td class="ls-answer"><span class="num-circle">4</span><input class="blank-line" id="input-l1-4" type="text"></td></tr>
+      <tr><td class="ls-label">Date:</td><td class="ls-answer">11th March</td></tr>
+      <tr><td class="ls-label">Clean-up by:</td><td class="ls-answer">5:00 p.m.</td></tr>
+      <tr><td class="ls-label">Day:</td><td class="ls-answer"><span class="num-circle">5</span><input class="blank-line" id="input-l1-5" type="text">&nbsp;&nbsp;14th</td></tr>
+      <tr><td class="ls-label">About the Price:</td><td class="ls-answer">Rather expensive</td></tr>
+      <tr><td class="ls-label">Storage Time:</td><td class="ls-answer"><span class="num-circle">6</span><input class="blank-line" id="input-l1-6" type="text"></td></tr>
+    </table>
+
+    <p class="muted" style="font-weight:700; margin:20px 0 4px;">Question 7 – 10</p>
+    <p class="muted" style="margin:0 0 12px;">Write the correct letter, <b>A, B,</b> or <b>C</b></p>
+    <p class="muted" style="font-weight:700; margin:0 0 6px;">List of Endings</p>
+    <div class="ls-endings-box">
+      <div class="end-row"><span class="num-circle" style="background:#8a8f99;">A</span> in emergency pack</div>
+      <div class="end-row"><span class="num-circle" style="background:#8a8f99;">B</span> in personal package</div>
+      <div class="end-row"><span class="num-circle" style="background:#8a8f99;">C</span> in storage with the furniture</div>
+    </div>`;
+  L1.match_items.forEach(mi=>{
+    html += `<div class="ls-match-row">${esc(mi.label)} <span class="num-circle">${mi.n}</span><input class="blank-line" id="input-l1-${mi.n}" maxlength="1" type="text"></div>`;
+  });
+  html += `</div>`;
+
+  // Listening 2 — replicated exactly as the original worksheet (continuous text with blanks)
+  const L2 = DATA.listen2;
+  let displayHtml = esc(L2.display);
+  L2.answers.forEach((a,i)=>{
+    const n = i+1;
+    displayHtml = displayHtml.replace(`___${n}___`, `<input class="blank-line" id="input-l2-${n}" style="min-width:100px;" type="text">`);
+  });
+  html += `<div class="card">
+    <p class="muted" style="font-weight:700; margin:0 0 2px;">B1 Listening – Weather Forecast | One Word Only</p>
+    <h3 style="margin-bottom:8px;">Listening – Fill in the Blanks</h3>
+    <p class="muted" style="margin:0 0 14px;"><b>Listen and complete the text. Write ONE WORD in each gap.</b></p>
+    <div class="passage" style="white-space:pre-wrap;">${displayHtml}</div>
+  </div>`;
+
+  document.getElementById('listening-content').innerHTML = html;
+}
+
+function renderSpeaking(){
+  let html = "";
+  DATA.speaking.forEach(t=>{
+    html += `<div class="speaking-topic"><h4>${t.icon} ${esc(t.topic)}</h4><ul>`;
+    t.questions.forEach(q=>{ html += `<li>${esc(q)}</li>`; });
+    html += `</ul></div>`;
+  });
+  document.getElementById('speaking-list').innerHTML = html;
+}
+
+// ---------- Scoring ----------
+function scoreMcqFill(items, prefix){
+  let score = 0;
+  let details = [];
+  items.forEach((it,i)=>{
+    const id = `${prefix}-${i}`;
+    let correct = false, userDisplay = "";
+    if(it.type === "mcq"){
+      const checked = document.querySelector(`input[name="q-${id}"]:checked`);
+      if(checked){
+        const oi = parseInt(checked.value,10);
+        correct = (oi === it.correct);
+        userDisplay = String.fromCharCode(65+oi) + ". " + it.options[oi];
+      } else {
+        userDisplay = "(chưa trả lời)";
+      }
+    } else {
+      const inp = document.getElementById('input-'+id);
+      const val = inp ? inp.value : "";
+      userDisplay = val || "(chưa trả lời)";
+      correct = fillCorrect(val, it.answer);
+    }
+    if(correct) score++;
+    details.push({q: it.q, correct, userDisplay, answerDisplay: it.type==="mcq" ? (String.fromCharCode(65+it.correct)+". "+it.options[it.correct]) : it.answer});
+  });
+  return {score, details};
+}
+
+function scoreListening(){
+  let score = 0;
+  let details = [];
+  const L1 = DATA.listen1;
+  L1.form_items.forEach(fi=>{
+    const inp = document.getElementById('input-l1-'+fi.n);
+    const val = inp ? inp.value : "";
+    const correct = fillCorrect(val, fi.answer);
+    if(correct) score++;
+    details.push({q:`Q${fi.n}. ${fi.label}`, correct, userDisplay: val||"(chưa trả lời)", answerDisplay: fi.answer});
+  });
+  L1.match_items.forEach(mi=>{
+    const inp = document.getElementById('input-l1-'+mi.n);
+    const val = (inp ? inp.value : "").trim().toUpperCase();
+    const correct = val === mi.answer;
+    if(correct) score++;
+    details.push({q:`Q${mi.n}. ${mi.label}`, correct, userDisplay: val||"(chưa trả lời)", answerDisplay: mi.answer});
+  });
+  const L2 = DATA.listen2;
+  L2.answers.forEach((a,i)=>{
+    const n = i+1;
+    const inp = document.getElementById('input-l2-'+n);
+    const val = inp ? inp.value : "";
+    const correct = fillCorrect(val, a);
+    if(correct) score++;
+    details.push({q:`Q${10+n} (Weather, gap ${n})`, correct, userDisplay: val||"(chưa trả lời)", answerDisplay: a});
+  });
+  return {score, details};
+}
+
+function renderReview(title, details){
+  let html = `<div class="card"><h3>Chi tiết — ${title}</h3>`;
+  details.forEach((d,i)=>{
+    html += `<div class="review-item ${d.correct?'correct':'incorrect'}">
+      <b>${i+1}.</b> ${esc(d.q)}<br>
+      Đáp án của em: <i>${esc(d.userDisplay)}</i> ${d.correct?'✅':'❌ — Đáp án đúng: <b>'+esc(d.answerDisplay)+'</b>'}
+    </div>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+const SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxYG6xMxmCMOkCIHdQIFZMy3aqKq7PQTxo0bQJjK8s2HFq_s2JkVoMJIqfInzJdjuMI/exec";
+
+function sendResultsToSheet(payload){
+  if(!SHEET_WEBHOOK_URL) return;
+  try{
+    fetch(SHEET_WEBHOOK_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+  }catch(err){
+    console.error("Không gửi được kết quả về Sheet:", err);
+  }
+}
+
+function submitTest(){
+  const vocabRes = scoreMcqFill(DATA.vocab, 'v');
+  const grammarRes = scoreMcqFill(DATA.grammar, 'g');
+  const readingRes = scoreMcqFill(flattenReadingItems(), 'r');
+  const listenRes = scoreListening();
+
+  const total90 = vocabRes.score + grammarRes.score + readingRes.score + listenRes.score;
+
+  const studentName = document.getElementById('stu-name').value || "Học sinh";
+  const studentClass = document.getElementById('stu-class').value || "";
+  sendResultsToSheet({
+    name: studentName,
+    className: studentClass,
+    vocab: vocabRes.score,
+    grammar: grammarRes.score,
+    reading: readingRes.score,
+    listening: listenRes.score,
+    total90: total90
+  });
+
+  let html = `
+    <div class="card">
+      <h3>🎉 Kết quả bài thi — ${esc(studentName)}</h3>
+      <p class="muted" style="color:#1e7a3a; font-weight:700;">✅ Kết quả của em đã được gửi về cho giáo viên.</p>
+      <div class="result-summary">
+        <div class="score-card"><div class="num">${vocabRes.score}/25</div><div class="lbl">VOCABULARY</div></div>
+        <div class="score-card"><div class="num">${grammarRes.score}/25</div><div class="lbl">GRAMMAR</div></div>
+        <div class="score-card"><div class="num">${readingRes.score}/20</div><div class="lbl">READING</div></div>
+        <div class="score-card"><div class="num">${listenRes.score}/20</div><div class="lbl">LISTENING</div></div>
+      </div>
+      <div class="grand-total">
+        <div class="num">${total90} / 90</div>
+        <div>Tổng điểm 4 phần tự động chấm</div>
+      </div>
+      <div style="background:var(--gold-100); border:1.5px solid var(--gold-500); border-radius:12px; padding:16px; margin-top:6px;">
+        <p style="margin:0 0 8px; font-weight:700; color:var(--gold-700);">🎤 Phần 5 — Speaking (10 điểm, do giáo viên chấm)</p>
+        <p class="muted" style="margin:0 0 10px;">Nhập điểm Speaking giáo viên đã chấm cho em để xem tổng điểm cuối cùng /100:</p>
+        <input type="number" min="0" max="10" step="0.5" id="speaking-score-input" class="qinput" style="max-width:120px;" placeholder="0-10" oninput="updateGrandTotal(${total90})">
+      </div>
+      <div class="grand-total" id="grand-total-100" style="display:none; margin-top:16px;">
+        <div class="num" id="grand-total-num"></div>
+        <div>TỔNG ĐIỂM CUỐI CÙNG / 100</div>
+      </div>
+    </div>
+  `;
+
+  html += renderReview("Vocabulary", vocabRes.details);
+  html += renderReview("Grammar", grammarRes.details);
+  html += renderReview("Reading", readingRes.details);
+  html += renderReview("Listening", listenRes.details);
+
+  document.getElementById('results-content').innerHTML = html;
+  submitted = true;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function updateGrandTotal(total90){
+  const sInput = document.getElementById('speaking-score-input');
+  const sVal = parseFloat(sInput.value);
+  const box = document.getElementById('grand-total-100');
+  const numEl = document.getElementById('grand-total-num');
+  if(!isNaN(sVal) && sVal>=0 && sVal<=10){
+    const grand = total90 + sVal;
+    numEl.textContent = grand + " / 100";
+    box.style.display = "block";
+  } else {
+    box.style.display = "none";
+  }
+}
+
+renderTabs();
+renderVocab();
+renderGrammar();
+renderReading();
+renderListening();
+renderSpeaking();
+</script>
+</body>
+</html>
